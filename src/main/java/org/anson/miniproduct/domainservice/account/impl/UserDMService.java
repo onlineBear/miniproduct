@@ -16,7 +16,7 @@ class UserDMService implements IUserDMService {
 
     @Override
     @Transactional(rollbackFor = Exception.class, readOnly = true)
-    public void login(String userNo, String encryptedPsd, ClientEnum client) throws Exception {
+    public void login(String userNo, String encryptedPsd, ClientEnum client) {
         log.debug("userNo : [{}], encryptedPsd : [{}], ClientEnum : [{}]", userNo, encryptedPsd, client.getKey());
         if (!dao.authentication(userNo, encryptedPsd)){
             throw new RuntimeException("账号密码不正确");
@@ -34,7 +34,7 @@ class UserDMService implements IUserDMService {
 
     @Override
     @Transactional(rollbackFor = Exception.class, readOnly = true)
-    public void logout(ClientEnum client) throws Exception {
+    public void logout(ClientEnum client){
         session.removeAttribute(this.getSessionId(client));
     }
 

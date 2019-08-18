@@ -4,6 +4,6 @@ import org.anson.miniproduct.domainservice.sys.permission.resource.cmd.AddResour
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
-interface AddResourceCMDConvert {
+interface AddResourceCMDConverter {
     ResourcePO toResourcePO(AddResourceCMD cmd);
 }

@@ -1,0 +1,12 @@
+# 开发环境
+spring:
+  datasource:
+    url: jdbc:mysql://120.78.206.101:3306/miniproduct?serverTimezone=CTT&setUnicode=true&characterEncoding=utf8
+    username: root
+    password: xAx868Xj
+  redis:
+    host: localhost
+    port: 6379
+    database: 0
+    requirePass: z35dTYN7
+    timeout: 10000

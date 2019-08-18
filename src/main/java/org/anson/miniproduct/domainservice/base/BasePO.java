@@ -6,7 +6,7 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-public abstract class BasePO {
+public abstract class BasePO implements Cloneable{
     /**
      * 主键id
      */
@@ -42,4 +42,9 @@ public abstract class BasePO {
      * 表名
      */
     public abstract String TABLENAME();
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
 }

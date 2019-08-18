@@ -1,5 +1,6 @@
 package org.anson.miniproduct.domainservice.internal.deletedrecord.impl;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.anson.miniproduct.domainservice.base.BasePO;
 import org.anson.miniproduct.domainservice.internal.deletedrecord.IDeletedRecordHelper;
 import org.anson.miniproduct.framework.jackson.Jackson;
@@ -12,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 class DeletedRecordHelper implements IDeletedRecordHelper {
     @Override
-    public <P extends BasePO> String recordDelData(P po) throws Exception {
+    public <P extends BasePO> String recordDelData(P po) throws JsonProcessingException {
         DeletedRecordPO record = new DeletedRecordPO();
         record.setTableName(po.TABLENAME());
         record.setPk(po.getId());

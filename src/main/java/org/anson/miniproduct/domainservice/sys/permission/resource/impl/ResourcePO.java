@@ -6,7 +6,7 @@ import org.anson.miniproduct.domainservice.base.BasePO;
 
 @Data
 @TableName("resource")
-class ResourcePO extends BasePO{
+class ResourcePO extends BasePO<ResourcePO>{
     private String moduleId;
 
     private String name;

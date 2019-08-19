@@ -46,7 +46,7 @@ class RoleDao extends BaseDao<RolePO, RoleMapper> {
         }
 
         this.mapper.deleteById(id);
-        this.delHelper.recordDelData(po);
+        this.delHelper.record(po);
     }
 
     // 注入

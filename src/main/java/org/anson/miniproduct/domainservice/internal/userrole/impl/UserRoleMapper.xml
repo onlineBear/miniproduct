@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.anson.miniproduct.domainservice.internal.userrole.impl.UserRoleMapper">
+    <insert id="batchInsert" parameterType="org.anson.miniproduct.domainservice.internal.userrole.impl.UserRolePO">
+        insert into user_role
+        (id, user_id, role_id,
+        create_time, update_time)
+        values
+        <foreach collection="list" item="item" separator=",">
+          (item.id, item.user_id, item.role_id,
+          item.create_time, item.update_time)
+        </foreach>
+    </insert>
+</mapper>

@@ -29,7 +29,11 @@ public class TestRoleDMService extends BaseTest {
 
     @Test
     public void deleteRole() throws Exception {
-        this.service.deleteRole("role02");
+        this.service.deleteRole("role01");
+    }
+
+    public void relateToResource(){
+        this.service.relateToResource("", null);
     }
 
     @Autowired

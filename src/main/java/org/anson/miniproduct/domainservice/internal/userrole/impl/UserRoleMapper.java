@@ -1,4 +1,4 @@
-package org.anson.miniproduct.domainservice.internal.deletedrecord.impl;
+package org.anson.miniproduct.domainservice.internal.userrole.impl;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
@@ -8,6 +8,6 @@ import java.util.Collection;
 
 @Repository
 @Mapper
-interface DeletedRecordMapper extends BaseMapper<DeletedRecordPO> {
-    void batchInsert(Collection<DeletedRecordPO> list);
+interface UserRoleMapper extends BaseMapper<UserRolePO> {
+    void batchInsert(Collection<UserRolePO> pos);
 }

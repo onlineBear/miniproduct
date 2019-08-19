@@ -6,7 +6,7 @@ import org.anson.miniproduct.domainservice.base.BasePO;
 
 @Data
 @TableName("role")
-class RolePO extends BasePO {
+class RolePO extends BasePO<RolePO> {
     private String no;
     private String name;
     private String description;

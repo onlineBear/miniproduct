@@ -18,7 +18,7 @@ public class TestDeletedRecordHelper {
     public void testRecordDelData() throws Exception {
         DictTypePO po = new DictTypePO();
         po.setId(IdHelper.nextSnowflakeId());
-        delHelper.recordDelData(po);
+        delHelper.record(po);
     }
     */
 

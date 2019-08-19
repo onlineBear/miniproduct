@@ -6,7 +6,7 @@ import org.anson.miniproduct.domainservice.base.BasePO;
 
 @Data
 @TableName("deleted_record")
-class DeletedRecordPO extends BasePO {
+class DeletedRecordPO extends BasePO<DeletedRecordPO> {
     private String tableName;
     private String pk;
     private String record;

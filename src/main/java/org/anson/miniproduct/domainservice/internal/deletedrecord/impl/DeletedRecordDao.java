@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collection;
 import java.util.Date;
 
 @Component
@@ -23,6 +24,10 @@ class DeletedRecordDao extends BaseDao<DeletedRecordPO, DeletedRecordMapper> {
         this.mapper.insert(deletedRecord);
 
         return deletedRecord.getId();
+    }
+
+    public void batchInsert(Collection<DeletedRecordPO> pos){
+        this.mapper.batchInsert(pos);
     }
 
     // 注入

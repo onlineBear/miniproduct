@@ -16,7 +16,7 @@ import java.util.Date;
 class ResourceDao extends BaseDao<ResourcePO, ResourceMapper> {
 
     public String insert(ResourcePO resourcePO) throws CloneNotSupportedException {
-        ResourcePO po = (ResourcePO) resourcePO.clone();
+        ResourcePO po = resourcePO.clone();
 
         Date operTime = RequestHolder.getReqTime();
 
@@ -47,7 +47,7 @@ class ResourceDao extends BaseDao<ResourcePO, ResourceMapper> {
         }
 
         this.mapper.deleteById(id);
-        this.delHelper.recordDelData(po);
+        this.delHelper.record(po);
     }
 
     // 注入

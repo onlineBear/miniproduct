@@ -32,6 +32,7 @@ public class TestRoleDMService extends BaseTest {
         this.service.deleteRole("role01");
     }
 
+    @Test
     public void relateToResource(){
         this.service.relateToResource("", null);
     }

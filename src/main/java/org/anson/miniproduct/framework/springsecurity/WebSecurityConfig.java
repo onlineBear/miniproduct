@@ -1,15 +1,20 @@
 package org.anson.miniproduct.framework.springsecurity;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration // 标识为配置类
 @EnableWebSecurity// 启动Spring Security的安全管理
+@Slf4j
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private MyUserDetailService myUserDetailService;
@@ -30,43 +35,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        log.error("configure");
+        // 若是前后端分离, csrf 必须关闭, 因为前端没带 csrf token
+        http.csrf().disable();
+
         http
                 .formLogin()
-                .loginPage("/pc/login") // 登录页面
-                .loginProcessingUrl("/login") // 登录url, 无需登录即可访问
+                // .loginPage("/pc/hasLogin") // 登录页面   // 前后端分离登录不再由后端控制
+                .loginProcessingUrl("/login").permitAll() // 登录接口url, 无需登录即可访问
                 .successHandler(myAuthenctiationSuccessHandler)
                 .failureHandler(myAuthenctiationFailureHandler)
                 // 配置所有请求都需要认证
                 .and()
                 .authorizeRequests()
-                .antMatchers("/pc/login","/login").permitAll() // 无需登录即可访问
                 .anyRequest().authenticated(); //其他没有匹配到的路径都需要登录
-
-        /*http.authorizeRequests()
-                .anyRequest().authenticated()
-                .and()
-                .formLogin()
-                .loginProcessingUrl("/doLogin")
-                .permitAll()
-                .and()
-                .logout()
-                .logoutUrl("/logout")
-                .logoutSuccessHandler(new LogoutSuccessHandler() {
-                    @Override
-                    public void onLogoutSuccess(HttpServletRequest req, HttpServletResponse resp, Authentication authentication) throws IOException, ServletException {
-                        Response res = ResHelper.ok(new Date());
-                        resp.setContentType("application/json;charset=utf-8");
-                        PrintWriter out = resp.getWriter();
-                        out.write(jackson.toJson(res));
-                        out.flush();
-                        out.close();
-                    }
-                })
-                .permitAll()
-                .and()
-                .csrf()
-                .disable()
-                .exceptionHandling();
-         */
     }
 }
